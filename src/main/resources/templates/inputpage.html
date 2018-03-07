@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="www.thymeleaf.org"
+      xmlns:sec="http://www.tymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <div th:replace="/basetemplate::headstuff"></div>
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="/basetemplate::headstuff"></div>
+<div class="wrapper">
+    <div class="sidebar" data-background-color="brown" data-active-color="danger">
+        <!--
+            Tip 1: you can change the color of the sidebar's background using: data-background-color="white | brown"
+            Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+        -->
+        <div class="logo">
+
+        </div>
+        <div class="sidebar-wrapper">
+
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav th:replace="/basetemplate::navbar">
+        </nav>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="card">
+                            <div class="header">
+                                <legend>Day Name Checker</legend>
+                            </div>
+                            <div class="content">
+                                <form method="post" action="#" th:action="@{/getdate}"
+                                      th:object="${getdate}" class="form-horizontal">
+
+                                    <fieldset>
+                                        <input type="hidden" th:field="*{id}" />
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Date</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="inputDate" th:field="*{inputDate}">
+                                                <span class="help-block">Enter a Date in the Past(dd/mm/yyyy)</span>
+                                                <span th:if="${#fields.hasErrors('inputDate')}"
+                                                      th:errors="*{inputDate}" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                       <!-- <div class="form-group">
+                                            <label class="col-sm-2 control-label">Category of Lost Item</label>
+                                            <div class="col-sm-10">
+                                                <div class="radio">
+                                                    <label><input data-toggle="radio" type="radio" th:field="*{itemType}" value="clothes" name="optradio1"/>Clothes</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input data-toggle="radio" type="radio" th:field="*{itemType}" value="pet" name="optradio2"/>Pet</label>
+                                                </div>
+                                                <div class="radio ">
+                                                    <label><input data-toggle="radio" type="radio" th:field="*{itemType}" value="other" name="optradio3" />Other</label>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                                        <div class="form-group">
+                                            <label class="col-md-3"></label>
+                                            <div class="col-md-9">
+                                                <button type="submit" class="btn btn-fill btn-info">Submit</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+
+                            </div>
+                        </div>  <!-- end card -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<th:block th:replace="/basetemplate::bootstrapbottom"></th:block>
+</body>
+</html>
