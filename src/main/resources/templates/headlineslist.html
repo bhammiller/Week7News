@@ -39,26 +39,27 @@
                                 <table class="table table-bigboy">
                                     <thead>
                                     <tr>
-                                        <th >Date</th>
-                                        <th >Day of Week</th>
-                                        <th >Male Name</th>
-                                        <th >Female Name</th>
-                                        <th>Characteristics</th>
-                                        <th>Chinese Zodiac</th>
-                                        <th>Astrological Sign</th>
+                                        <th >Source</th>
+                                        <th >Author</th>
+                                        <th >Title</th>
+                                        <th >Description</th>
+                                        <th>URL</th>
+                                        <th>Image</th>
+                                        <th>Published at</th>
                                         <!--<th sec:authorize="hasAuthority('ADMIN')">Change Status</th>-->
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="dateQuerry : ${listed}">
-                                        <td th:text="${dateQuerry.outputDate}"></td>
-                                        <td th:text="${dateQuerry.dayOfWeek}"></td>
-                                        <td th:text="${dateQuerry.maleName}"></td>
-                                        <td th:text="${dateQuerry.femaleName}"></td>
-                                        <td th:text="${dateQuerry.dayCharacterists}"></td>
-                                        <td th:text="${dateQuerry.chineseZodiac}"></td>
-                                        <td th:text="${dateQuerry.astrologicalSigns}"></td>
-                                        <td th:text="${dateQuerry.todaysHoroscope}"></td>
+                                    <tr th:each="eacharticle : ${newslist}">
+<!--
+                                        <td th:text="${eacharticle.source.getName()}"></td>
+-->
+                                        <td th:text="${eacharticle.author}"></td>
+                                        <td th:text="${eacharticle.title}"></td>
+                                        <td th:text="${eacharticle.description}"></td>
+                                        <td th:text="${eacharticle.url}"></td>
+                                        <td th:text="${eacharticle.urlToImage}"></td>
+                                        <td th:text="${eacharticle.publishedAt}"></td>
                                         <!--<td sec:authorize="hasAuthority('ADMIN')">
                                             <a th:unless="${lostItems.foundStatus}"  type="button" th:href="@{/tofound/{id}(id=${lostItems.id})}"  class="btn btn-dark" role="button">Change to Found</a>
 
