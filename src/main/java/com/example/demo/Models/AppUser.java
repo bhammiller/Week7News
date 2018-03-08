@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,6 +29,8 @@ public class AppUser {
     private String firstName;
 
     private String lastName;
+
+    private String personalImage;
 
 
     @CreationTimestamp
@@ -82,6 +85,14 @@ public class AppUser {
         this.createdAt = createdAt;
     }
 
+    public String getPersonalImage() {
+        return personalImage;
+    }
+
+    public void setPersonalImage(String personalImage) {
+        this.personalImage = personalImage;
+    }
+
     // Connection to AppRole
     @ManyToMany(fetch = FetchType.EAGER)
     //This needs to be instantiated in the construtor so you can use it to add and remove individual roles
@@ -89,6 +100,7 @@ public class AppUser {
 
     public AppUser() {
         this.roles = new HashSet<>();
+        this.categoryList= new ArrayList<>();
     }
 
     public Set<AppRole> getRoles() {
@@ -103,24 +115,26 @@ public class AppUser {
         this.roles.add(role);
     }
 
-    // Connection to LostItems
-    /*@OneToMany(mappedBy = "appUser")
-    private List<DateQuerry> dateQuerryList;
+    // Connection to Category
+    @ManyToMany
+    private List<Category> categoryList;
 
-    public void addDateQuerry(DateQuerry dateQuerry) {
-        this.dateQuerryList.add(dateQuerry);
+    public List<Category> getCategoryList() {
+        return categoryList;
     }
 
-    public AppUser(List<DateQuerry> dateQuerryList) {
-        this.dateQuerryList = dateQuerryList;
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
     }
 
-    public List<DateQuerry> getDateQuerryList() {
-        return dateQuerryList;
+    public void addCategory(Category category){
+        this.categoryList.add((category));
     }
 
-    public void setDateQuerryList(List<DateQuerry> dateQuerryList) {
-        this.dateQuerryList = dateQuerryList;
-    }*/
+    public void subtractCategory(Category category){
+        this.categoryList.remove(category);
+    }
+
+
 }
 

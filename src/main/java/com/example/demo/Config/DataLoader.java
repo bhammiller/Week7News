@@ -2,8 +2,10 @@ package com.example.demo.Config;
 
 import com.example.demo.Models.AppRole;
 import com.example.demo.Models.AppUser;
+import com.example.demo.Models.Category;
 import com.example.demo.Repositories.AppRoleRepository;
 import com.example.demo.Repositories.AppUserRepository;
+import com.example.demo.Repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -18,6 +20,9 @@ public class DataLoader implements CommandLineRunner {
 
     @Autowired
     AppUserRepository appUserRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
 
     @Override
@@ -60,9 +65,23 @@ public class DataLoader implements CommandLineRunner {
         appUser.addRole(appRoleRepository.findAppRoleByRoleName("USER"));
         appUserRepository.save(appUser);
 
-
-
-
+        // Category
+        Category category=new Category();
+        category.setName("Warren");
+        categoryRepository.save(category);
+        category = new Category();
+        category.setName("China");
+        categoryRepository.save(category);
+        category = new Category();
+        category.setName("California");
+        categoryRepository.save(category);
+        appUser=appUserRepository.findOne(new Long(3));
+        appUser.addCategory(categoryRepository.findByName("Warren"));
+        appUserRepository.save(appUser);
+        appUser.addCategory(categoryRepository.findByName("China"));
+        appUserRepository.save(appUser);
+        appUser.addCategory(categoryRepository.findByName("California"));
+        appUserRepository.save(appUser);
 
     }
 }

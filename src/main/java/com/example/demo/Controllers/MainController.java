@@ -2,9 +2,12 @@ package com.example.demo.Controllers;
 
 import com.example.demo.Models.AppRole;
 import com.example.demo.Models.AppUser;
+import com.example.demo.Models.Category;
 import com.example.demo.Repositories.AppRoleRepository;
 import com.example.demo.Repositories.AppUserRepository;
+import com.example.demo.Repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,12 +28,16 @@ public class MainController {
     AppRoleRepository appRoleRepository;
 
     @Autowired
+    CategoryRepository categoryRepository;
+
+    @Autowired
     NewsService newsService;
 
     // METHODS //////////////
     // Homepage
     @RequestMapping("/")
     public String goToHome(Model model){
+        model.addAttribute("message","Top News Headlines");
         model.addAttribute("newslist",newsService.findTopHeadlines());
         return "headlineslist";
     }
@@ -64,5 +71,36 @@ public class MainController {
             appUserRepository.save(newUser);
             return "redirect:/login";
         }
+    }
+
+    // User Methods
+    @GetMapping("/addtopic") // shows users profile
+    public String addCategory(Model model, Authentication authentication){
+        AppUser appUser = appUserRepository.findAppUserByAppUsername(authentication.getName());
+        model.addAttribute("addtopic",new Category());
+        model.addAttribute("profile",appUser);
+        return "userprofilepage";
+    }
+
+    @PostMapping("/addtopic")
+    public String processAddCategory(@Valid @ModelAttribute("addtopic")Category category, BindingResult result,
+            Authentication authentication, Model model){
+        if (result.hasErrors()) {
+            System.out.println(result.toString());
+            return "userprofilepage";
+        } else {
+            AppUser appUser = appUserRepository.findAppUserByAppUsername(authentication.getName());
+            appUser.addCategory(category);
+            appUserRepository.save(appUser);
+            return "redirect:/addtopic";
+        }
+    }
+
+    @RequestMapping("/personalnews")
+    public String showPersonalNews(Model model, Authentication authentication){
+        AppUser appUser = appUserRepository.findAppUserByAppUsername(authentication.getName());
+        model.addAttribute("message","Your Personal News");
+        model.addAttribute("newslist",newsService.findArticlesByCategory(appUser));
+        return "headlineslist";
     }
 }
