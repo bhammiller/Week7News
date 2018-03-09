@@ -129,7 +129,7 @@ public class AppUser {
     }
 
     public void addCategory(Category category){
-        this.categoryList.add((category));
+        this.categoryList.add(category);
     }
 
     public void subtractCategory(Category category){

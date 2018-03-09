@@ -101,7 +101,6 @@ public class MainController {
         AppUser appUser = appUserRepository.findAppUserByAppUsername(authentication.getName());
         model.addAttribute("message","Your Personal News");
         model.addAttribute("newslist", appUser.getCategoryList());
-        /*model.addAttribute("personal",newsService);*/
         return "personallist";
     }
 

@@ -35,7 +35,12 @@
                                 <!--<h4 class="category" th:text="${message}"></h4>-->
                                 <br />
                             </div>
-                            <div class="content table-responsive table-full-width">
+                            <div class="content table-responsive table-full-width"  th:each="categor :${newslist}">
+                                <div class="header text-center">
+                                    <h1 class="title" th:text="${categor.name}"></h1>
+                                    <!--<h4 class="category" th:text="${message}"></h4>-->
+                                    <br />
+                                </div>
                                 <table class="table table-bigboy">
                                     <thead>
                                     <tr>
@@ -47,10 +52,7 @@
                                         <th>Published at</th>
                                     </tr>
                                     </thead>
-                                    <tbody th:each="categor :${newslist}">
-                                    <div class="header text-center">
-                                        <h3 class="title" th:text="${categor.name}"></h3>
-                                    </div>
+                                    <tbody>
                                     <tr th:each="eacharticle : ${categor.findArticlesByCategory(categor.name)}">
                                         <td th:text="${eacharticle.source.getName()}"></td>
                                         <td th:text="${eacharticle.author}"></td>
