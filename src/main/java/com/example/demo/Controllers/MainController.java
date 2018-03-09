@@ -65,6 +65,13 @@ public class MainController {
             appUserRepository.save(newUser);
             AppRole r = appRoleRepository.findAppRoleByRoleName("USER");
             newUser.addRole(r);
+            newUser.addCategory(categoryRepository.findOne(new Long(1)));
+            newUser.addCategory(categoryRepository.findOne(new Long(2)));
+            newUser.addCategory(categoryRepository.findOne(new Long(3)));
+            newUser.addCategory(categoryRepository.findOne(new Long(4)));
+            newUser.addCategory(categoryRepository.findOne(new Long(5)));
+            newUser.addCategory(categoryRepository.findOne(new Long(6)));
+            newUser.addCategory(categoryRepository.findOne(new Long(7)));
             appUserRepository.save(newUser);
             return "redirect:/login";
         }

@@ -68,17 +68,38 @@ public class DataLoader implements CommandLineRunner {
         // Category
         Category category=new Category();
         category = new Category();
-        category.setName("China");
         category.setFavStatus(true);
+        category.setName("Business");
+        categoryRepository.save(category);
+        category = new Category();
+        category.setFavStatus(true);
+        category.setName("General");
+        categoryRepository.save(category);
+        category = new Category();
+        category.setFavStatus(true);
+        category.setName("entertainment");
         categoryRepository.save(category);
         category = new Category();
         category.setFavStatus(true);
         category.setName("Science");
         categoryRepository.save(category);
-        appUser=appUserRepository.findOne(new Long(3));
+        category = new Category();
+        category.setFavStatus(true);
+        category.setName("technology");
+        categoryRepository.save(category);
+        category = new Category();
+        category.setFavStatus(true);
+        category.setName("Sports");
+        categoryRepository.save(category);
+        category = new Category();
+        category.setFavStatus(true);
+        category.setName("health");
+        categoryRepository.save(category);
+
+        /*appUser=appUserRepository.findOne(new Long(3));
         appUser.addCategory(categoryRepository.findByName("China"));
         appUser.addCategory(categoryRepository.findByName("Science"));
-        appUserRepository.save(appUser);
+        appUserRepository.save(appUser);*/
         /*appUser=appUserRepository.findOne(new Long(3));
         appUser.subtractCategory(categoryRepository.findByName("Trump"));
         appUserRepository.save(appUser);*/
