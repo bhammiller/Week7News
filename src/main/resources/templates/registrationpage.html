@@ -28,18 +28,14 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-4 col-md-offset-s1">
 
                         <div class="card">
-                            <div class="header">
+                            <div class="card-header">
                                 <legend>Registration</legend>
                             </div>
-                            <div class="content">
-                                <div class="col-md-8 col-md-offset-2">
 
-                                </div>
-
-                                <div class="col-md-4 col-md-offset-s1">
+                            <div class="card-content">
                                     <form action="#" method="post" th:action="@{/register}" th:object="${newUser}">
                                         <input type="hidden" th:field="*{id}" />
                                         <div class="card card-plain">
@@ -49,6 +45,9 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="text" th:field="*{lastName}" placeholder="Your Last Name" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" th:field="*{userEmail}" placeholder="Your Email" class="form-control">
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="text" th:field="*{appUsername}" placeholder="Username" class="form-control">
@@ -62,9 +61,6 @@
                                             </div>
                                         </div>
                                     </form>
-
-                                </div>
-
                             </div>
                         </div>  <!-- end card -->
 

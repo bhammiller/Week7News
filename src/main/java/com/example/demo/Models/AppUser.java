@@ -27,6 +27,8 @@ public class AppUser {
     @NotEmpty
     private String appPassword;
 
+    private String userEmail;
+
     private String firstName;
 
     private String lastName;
@@ -92,6 +94,14 @@ public class AppUser {
 
     public void setPersonalImage(String personalImage) {
         this.personalImage = personalImage;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     // Connection to AppRole

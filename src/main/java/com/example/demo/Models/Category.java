@@ -3,6 +3,7 @@ package com.example.demo.Models;
 import org.springframework.web.client.RestTemplate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotNull
     private String name;
 
     private Boolean favStatus;
