@@ -98,6 +98,7 @@
                         </p>
                     </a>
                     <ul class="dropdown-menu">
+                        <li ><a href="/">Home</a></li>
                         <li sec:authorize="hasAuthority('USER')"><a href="/addtopic">User Profile</a></li>
                         <li sec:authorize="hasAuthority('USER')"><a href="/personalnews">Personalized News</a></li>
                         <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
