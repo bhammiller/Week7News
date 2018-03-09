@@ -100,7 +100,8 @@ public class MainController {
     public String showPersonalNews(Model model, Authentication authentication){
         AppUser appUser = appUserRepository.findAppUserByAppUsername(authentication.getName());
         model.addAttribute("message","Your Personal News");
-        model.addAttribute("newslist",newsService.findArticlesByCategory(appUser));
-        return "headlineslist";
+        model.addAttribute("newslist", appUser.getCategoryList());
+        return "personallist";
     }
+
 }
