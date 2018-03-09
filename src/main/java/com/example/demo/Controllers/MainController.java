@@ -82,13 +82,14 @@ public class MainController {
     @PostMapping("/addtopic")
     public String processAddCategory(@Valid @ModelAttribute("addtopic")Category category, BindingResult result,
             Authentication authentication, Model model){
+        AppUser appUser = appUserRepository.findAppUserByAppUsername(authentication.getName());
         if (result.hasErrors()) {
             System.out.println(result.toString());
+            model.addAttribute("profile",appUser);
             return "profilepage";
         } else {
             category.setFavStatus(true);
             categoryRepository.save(category);
-            AppUser appUser = appUserRepository.findAppUserByAppUsername(authentication.getName());
             appUser.addCategory(category);
             appUserRepository.save(appUser);
             return "redirect:/addtopic";
@@ -99,6 +100,14 @@ public class MainController {
     public String removeACatagory(@PathVariable("id")long id){
         Category category=categoryRepository.findOne(id);
         category.setFavStatus(false);
+        categoryRepository.save(category);
+        return "redirect:/addtopic";
+    }
+
+    @RequestMapping("/enable/{id}")
+    public String enableACatagory(@PathVariable("id")long id){
+        Category category=categoryRepository.findOne(id);
+        category.setFavStatus(true);
         categoryRepository.save(category);
         return "redirect:/addtopic";
     }

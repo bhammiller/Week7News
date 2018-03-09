@@ -53,8 +53,11 @@
                                             </thead>
                                             <tbody>
                                             <tr th:each="categoryType : ${profile.getCategoryList()}">
-                                                <td th:if="${categoryType.favStatus}" th:text="${categoryType.name}"></td>
-                                                <td th:if="${categoryType.favStatus}"><a th:href="@{/remove/{id}(id=${categoryType.id})}" >Remove?</a></td>
+                                                <td th:text="${categoryType.name}"></td>
+                                                <td>
+                                                    <a th:if="${categoryType.favStatus}" th:href="@{/remove/{id}(id=${categoryType.id})}" >Remove?</a>
+                                                    <a th:unless="${categoryType.favStatus}" th:href="@{/enable/{id}(id=${categoryType.id})}" >ReEnable?</a>
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>

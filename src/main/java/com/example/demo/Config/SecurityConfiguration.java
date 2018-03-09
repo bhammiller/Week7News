@@ -29,7 +29,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http
 
                 .authorizeRequests()
-                .antMatchers("/**", "/css/**","/fonts/**","/js/**","/img/**","/sass/**").permitAll()
+                .antMatchers("/","/login","/register", "/css/**","/fonts/**","/js/**","/img/**","/sass/**").permitAll()
+                .antMatchers("/","/addtopic","/remove/**","/enable/**","/personalnews","/newscategory/{cattypename}").hasAuthority("USER")
                 .anyRequest().authenticated();
 
         http
