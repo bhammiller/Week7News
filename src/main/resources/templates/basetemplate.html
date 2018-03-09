@@ -98,10 +98,11 @@
                         </p>
                     </a>
                     <ul class="dropdown-menu">
-                        <li sec:authorize="hasAuthority('ADMIN')"><a href="/addtopic">User Profile</a></li>
+                        <li sec:authorize="hasAuthority('USER')"><a href="/addtopic">User Profile</a></li>
+                        <li sec:authorize="hasAuthority('USER')"><a href="/personalnews">Personalized News</a></li>
                         <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
                         <li sec:authorize="isAnonymous()"><a href="/register">Register</a></li>
-                        <li sec:authorize="hasAuthority('ADMIN')"><a href="/logout">Logout</a></li>
+                        <li sec:authorize="hasAuthority('USER')"><a href="/logout">Logout</a></li>
                     </ul>
                 </li>
 
