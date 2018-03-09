@@ -20,7 +20,7 @@ public class NewsService {
         System.out.println();
         return headlines.getArticles();
     }
-    public Iterable<Article> findArticlesByCategory(AppUser appUser){
+    public Iterable<Article> findArticlesByCategories(AppUser appUser){
         ArrayList<Article> personalArticles = new ArrayList<>();
         for (Category category:appUser.getCategoryList()) {
             String catName=category.getName();
@@ -34,7 +34,7 @@ public class NewsService {
         }
         return personalArticles;
     }
-    public Iterable<Article> findArticlesByCategory2(Category category){
+    /*public Iterable<Article> findArticlesByCategory(Category category){
         ArrayList<Article> personalArticles = new ArrayList<>();
             String catName=category.getName();
             RestTemplate restTemplate = new RestTemplate();
@@ -45,5 +45,5 @@ public class NewsService {
 
             }
         return personalArticles;
-    }
+    }*/
 }

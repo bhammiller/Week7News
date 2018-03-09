@@ -99,10 +99,10 @@ public class MainController {
     @RequestMapping("/personalnews")
     public String showPersonalNews(Model model, Authentication authentication){
         AppUser appUser = appUserRepository.findAppUserByAppUsername(authentication.getName());
-
         model.addAttribute("message","Your Personal News");
         model.addAttribute("newslist", appUser.getCategoryList());
-        return "headlineslist";
+        /*model.addAttribute("personal",newsService);*/
+        return "personallist";
     }
 
 }

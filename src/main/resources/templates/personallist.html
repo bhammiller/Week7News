@@ -48,7 +48,10 @@
                                     </tr>
                                     </thead>
                                     <tbody th:each="categor :${newslist}">
-                                    <tr th:each="eacharticle : ${categor}">
+                                    <div class="header text-center">
+                                        <h3 class="title" th:text="${categor.name}"></h3>
+                                    </div>
+                                    <tr th:each="eacharticle : ${categor.findArticlesByCategory(categor.name)}">
                                         <td th:text="${eacharticle.source.getName()}"></td>
                                         <td th:text="${eacharticle.author}"></td>
                                         <td><a th:href="@{${eacharticle.url}}" th:target="_blank" th:inline="text">[[${eacharticle.title}]]</a></td>

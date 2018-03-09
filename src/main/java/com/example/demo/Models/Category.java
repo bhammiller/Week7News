@@ -1,6 +1,9 @@
 package com.example.demo.Models;
 
+import org.springframework.web.client.RestTemplate;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -46,5 +49,16 @@ public class Category {
 
     public void setAppUserList(List<AppUser> appUserList) {
         this.appUserList = appUserList;
+    }
+    public Iterable<Article> findArticlesByCategory(String catName){
+        ArrayList<Article> personalArticles = new ArrayList<>();
+        RestTemplate restTemplate = new RestTemplate();
+        Headlines headlines=restTemplate.getForObject("https://newsapi.org/v2/everything?q="+catName.toLowerCase()+"&apiKey=1f6e68f888ff45538990a57fa0e356b0",
+                Headlines.class);
+        for (Article article:headlines.getArticles()) {
+            personalArticles.add(article);
+
+        }
+        return personalArticles;
     }
 }

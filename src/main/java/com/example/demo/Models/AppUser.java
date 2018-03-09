@@ -3,6 +3,7 @@ package com.example.demo.Models;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.client.RestTemplate;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -134,6 +135,7 @@ public class AppUser {
     public void subtractCategory(Category category){
         this.categoryList.remove(category);
     }
+
 
 
 }
