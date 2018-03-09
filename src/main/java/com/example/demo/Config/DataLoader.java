@@ -67,7 +67,7 @@ public class DataLoader implements CommandLineRunner {
 
         // Category
         Category category=new Category();
-        category.setName("Warren");
+        category.setName("Technology");
         categoryRepository.save(category);
         category = new Category();
         category.setName("China");
@@ -76,7 +76,7 @@ public class DataLoader implements CommandLineRunner {
         category.setName("California");
         categoryRepository.save(category);
         category = new Category();
-        category.setName("Trump");
+        category.setName("Science");
         categoryRepository.save(category);
         appUser=appUserRepository.findOne(new Long(3));
         appUser.addCategory(categoryRepository.findByName("Technology"));
