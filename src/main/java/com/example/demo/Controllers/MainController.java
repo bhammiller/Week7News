@@ -11,10 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -89,6 +86,7 @@ public class MainController {
             System.out.println(result.toString());
             return "profilepage";
         } else {
+            category.setFavStatus(true);
             categoryRepository.save(category);
             AppUser appUser = appUserRepository.findAppUserByAppUsername(authentication.getName());
             appUser.addCategory(category);
@@ -97,6 +95,13 @@ public class MainController {
         }
     }
 
+    @RequestMapping("/remove/{id}")
+    public String removeACatagory(@PathVariable("id")long id){
+        Category category=categoryRepository.findOne(id);
+        category.setFavStatus(false);
+        categoryRepository.save(category);
+        return "redirect:/addtopic";
+    }
 
     @RequestMapping("/personalnews")
     public String showPersonalNews(Model model, Authentication authentication){
@@ -104,6 +109,13 @@ public class MainController {
         model.addAttribute("message","Your Personal News");
         model.addAttribute("newslist", appUser.getCategoryList());
         return "personallist";
+    }
+
+    @RequestMapping("/newscategory/{cattypename}")
+    public String showNewsCategory(@PathVariable("cattypename")String cattypename, Model model){
+        model.addAttribute("message",cattypename.toUpperCase());
+        model.addAttribute("newslist",newsService.findNewsAPICategory(cattypename));
+        return "headlineslist";
     }
 
 }

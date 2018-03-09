@@ -38,7 +38,6 @@
                                 <div class="card card-user">
                                     <div class="card-header">
                                         <div class="author">
-                                            <img class="avatar border-white" th:src="${profile.personalImage}" alt="/img/faces/face-0.jpg"/>
                                             <h4 class="card-title" th:text="${profile.appUsername}"><br />
                                                 <small th:text="${profile.userEmail}"></small>
                                             </h4>
@@ -54,8 +53,8 @@
                                             </thead>
                                             <tbody>
                                             <tr th:each="categoryType : ${profile.getCategoryList()}">
-                                                <td th:text="${categoryType.name}"></td>
-                                                <td><a th:href="@{/remove/{id}(id=${categoryType.id})}" >Remove?</a></td>
+                                                <td th:if="${categoryType.favStatus}" th:text="${categoryType.name}"></td>
+                                                <td th:if="${categoryType.favStatus}"><a th:href="@{/remove/{id}(id=${categoryType.id})}" >Remove?</a></td>
                                             </tr>
                                             </tbody>
                                         </table>

@@ -1,5 +1,6 @@
 package com.example.demo.Models;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.client.RestTemplate;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class Category {
     private long id;
 
     @NotNull
+    @NotEmpty
     private String name;
 
     private Boolean favStatus;

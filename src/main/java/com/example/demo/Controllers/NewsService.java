@@ -34,6 +34,14 @@ public class NewsService {
         }
         return personalArticles;
     }
+    public Iterable<Article> findNewsAPICategory(String apiCategory){
+        RestTemplate restTemplate = new RestTemplate();
+        Headlines headlines=restTemplate.getForObject("https://newsapi.org/v2/top-headlines?category="+apiCategory.toLowerCase()+"&apiKey=1f6e68f888ff45538990a57fa0e356b0",
+                Headlines.class);
+        System.out.println(headlines.toString());
+        System.out.println();
+        return headlines.getArticles();
+    }
     /*public Iterable<Article> findArticlesByCategory(Category category){
         ArrayList<Article> personalArticles = new ArrayList<>();
             String catName=category.getName();
